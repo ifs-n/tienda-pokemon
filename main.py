@@ -1,0 +1,95 @@
+import os
+os.system("cls")
+
+pokeball = 1000
+potion = 1500
+revive = 3000
+baya = 500
+flag = True
+acum_pokeball = 0
+acum_potion = 0
+acum_revive = 0
+acum_baya = 0
+acum_product = 0
+quant_pokeball = 0
+quant_potion = 0
+quant_revive = 0
+quant_baya = 0
+try:
+    
+    while flag == True:
+        print("------ Bienvenido  a PokeMarket ------")
+        option = int(input("Seleccione un producto o termine su compra:\n1. Pokeball\n2. Poción\n3. Revivir\n4. Baya\n5. Finalizar Compra\n"))
+        if option == 1:
+            while quant_pokeball <= 0:
+                quant_pokeball = int(input("Ingrese la cantidad deseada: "))
+                if quant_pokeball > 0:
+                    break
+                else:
+                    print("La cantidad no puede ser 0 o negativo")
+            acum_pokeball = acum_pokeball + 1
+            acum_product = acum_product + 1
+        elif option == 2:
+            while quant_potion <= 0:
+                quant_potion = int(input("Ingrese la cantidad deseada: "))
+                if quant_potion > 0:
+                    break
+                else:
+                    print("La cantidad no puede ser 0 o negativo")
+            acum_potion = acum_potion + 1
+            acum_product = acum_product + 1
+        elif option == 3:
+            while quant_revive <= 0:
+                quant_revive = int(input("Ingrese la cantidad deseada: "))
+                if quant_revive > 0:
+                    break
+                else:
+                    print("La cantidad no puede ser 0 o negativo")
+            acum_revive = acum_revive + 1
+            acum_product = acum_product + 1
+        elif option == 4:
+            while quant_baya <= 0:
+                quant_baya = int(input("Ingrese la cantidad deseada: "))
+                if quant_baya > 0:
+                    break
+                else:
+                    print("La cantidad no puede ser 0 o negativo")
+            acum_baya = acum_baya = 0
+            acum_product = acum_product = 0
+        elif option == 5 and acum_product > 0:
+            flag = False
+        else:
+            print("El valor ingresado no es válido o no se ha comprado ningun producto")
+    
+    total_pokeball = pokeball * quant_pokeball
+    total_potion = potion * quant_potion
+    total_baya = baya * quant_baya
+    
+    if quant_revive >= 3:
+        revive_discount = revive * 0.15
+    else:
+        revive_discount = revive * 0
+    
+    total_revive = revive * quant_revive - revive_discount
+    total_parcial = total_pokeball + total_potion + total_baya + total_revive
+    
+    
+    total_productos = quant_pokeball + quant_potion + quant_revive + quant_baya 
+    if total_productos > 10:
+        quant_discount = total_productos * 0.05
+    else:
+        quant_discount = total_productos * 0
+    
+    if total_parcial > 5000:
+        total_discount = total_parcial * 0.1
+    else:
+        total_discount = total_parcial * 0
+    
+    final_total = total_parcial - total_discount - quant_discount
+    
+    discount = total_discount + quant_discount + revive_discount
+    
+    print(f"Total bruto: {total_parcial}\nTotal de descuentos: {discount}\n Total a pagar: {final_total}\nCantidad de productos comprados: {total_productos}")
+    
+except:
+    print("malaso")
