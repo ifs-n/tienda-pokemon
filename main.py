@@ -16,9 +16,9 @@ quant_potion = 0
 quant_revive = 0
 quant_baya = 0
 try:
+    print("------ Bienvenido  a PokeMarket ------")
     
     while flag == True:
-        print("------ Bienvenido  a PokeMarket ------")
         option = int(input("Seleccione un producto o termine su compra:\n1. Pokeball\n2. Poción\n3. Revivir\n4. Baya\n5. Finalizar Compra\n"))
         if option == 1:
             while quant_pokeball <= 0:
@@ -29,6 +29,7 @@ try:
                     print("La cantidad no puede ser 0 o negativo")
             acum_pokeball = acum_pokeball + 1
             acum_product = acum_product + 1
+            os.system("cls")
         elif option == 2:
             while quant_potion <= 0:
                 quant_potion = int(input("Ingrese la cantidad deseada: "))
@@ -38,6 +39,7 @@ try:
                     print("La cantidad no puede ser 0 o negativo")
             acum_potion = acum_potion + 1
             acum_product = acum_product + 1
+            os.system("cls")
         elif option == 3:
             while quant_revive <= 0:
                 quant_revive = int(input("Ingrese la cantidad deseada: "))
@@ -47,6 +49,7 @@ try:
                     print("La cantidad no puede ser 0 o negativo")
             acum_revive = acum_revive + 1
             acum_product = acum_product + 1
+            os.system("cls")
         elif option == 4:
             while quant_baya <= 0:
                 quant_baya = int(input("Ingrese la cantidad deseada: "))
@@ -56,6 +59,7 @@ try:
                     print("La cantidad no puede ser 0 o negativo")
             acum_baya = acum_baya = 0
             acum_product = acum_product = 0
+            os.system("cls")
         elif option == 5 and acum_product > 0:
             flag = False
         else:
@@ -64,32 +68,36 @@ try:
     total_pokeball = pokeball * quant_pokeball
     total_potion = potion * quant_potion
     total_baya = baya * quant_baya
-    
+    total_revive = revive * quant_revive
+
     if quant_revive >= 3:
-        revive_discount = revive * 0.15
+        revive_discount = total_revive * 0.15
     else:
-        revive_discount = revive * 0
+        revive_discount = total_revive * 0
+
+    revive_subtotal = total_revive - revive_discount
     
-    total_revive = revive * quant_revive - revive_discount
     total_parcial = total_pokeball + total_potion + total_baya + total_revive
+    total_withrevivedisc = total_pokeball + total_potion + total_baya + revive_subtotal
     
-    
-    total_productos = quant_pokeball + quant_potion + quant_revive + quant_baya 
+    total_productos = quant_pokeball + quant_potion + quant_revive + quant_baya
+
     if total_productos > 10:
         quant_discount = total_productos * 0.05
     else:
         quant_discount = total_productos * 0
     
     if total_parcial > 5000:
-        total_discount = total_parcial * 0.1
+        total_discount = total_withrevivedisc * 0.1
     else:
-        total_discount = total_parcial * 0
+        total_discount = total_withrevivedisc * 0
     
-    final_total = total_parcial - total_discount - quant_discount
+    final_total = total_withrevivedisc - total_discount - quant_discount 
     
     discount = total_discount + quant_discount + revive_discount
     
-    print(f"Total bruto: {total_parcial}\nTotal de descuentos: {discount}\n Total a pagar: {final_total}\nCantidad de productos comprados: {total_productos}")
+    os.system("cls")
+    print(f"Total bruto: {total_parcial}\nTotal de descuentos: {discount}\nTotal a pagar: {final_total}\nCantidad de productos comprados: {total_productos}\n")
     
 except:
     print("malaso")
