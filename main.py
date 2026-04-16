@@ -6,10 +6,6 @@ potion = 1500
 revive = 3000
 baya = 500
 flag = True
-acum_pokeball = 0
-acum_potion = 0
-acum_revive = 0
-acum_baya = 0
 acum_product = 0
 quant_pokeball = 0
 quant_potion = 0
@@ -27,7 +23,6 @@ try:
                     break
                 else:
                     print("La cantidad no puede ser 0 o negativo")
-            acum_pokeball = acum_pokeball + 1
             acum_product = acum_product + 1
             os.system("cls")
         elif option == 2:
@@ -37,7 +32,6 @@ try:
                     break
                 else:
                     print("La cantidad no puede ser 0 o negativo")
-            acum_potion = acum_potion + 1
             acum_product = acum_product + 1
             os.system("cls")
         elif option == 3:
@@ -47,7 +41,6 @@ try:
                     break
                 else:
                     print("La cantidad no puede ser 0 o negativo")
-            acum_revive = acum_revive + 1
             acum_product = acum_product + 1
             os.system("cls")
         elif option == 4:
@@ -57,7 +50,6 @@ try:
                     break
                 else:
                     print("La cantidad no puede ser 0 o negativo")
-            acum_baya = acum_baya = 0
             acum_product = acum_product = 0
             os.system("cls")
         elif option == 5 and acum_product > 0:
@@ -77,17 +69,17 @@ try:
 
     revive_subtotal = total_revive - revive_discount
     
-    total_parcial = total_pokeball + total_potion + total_baya + total_revive
+    total_partial = total_pokeball + total_potion + total_baya + total_revive
     total_withrevivedisc = total_pokeball + total_potion + total_baya + revive_subtotal
     
-    total_productos = quant_pokeball + quant_potion + quant_revive + quant_baya
+    total_product = quant_pokeball + quant_potion + quant_revive + quant_baya
 
-    if total_productos > 10:
-        quant_discount = total_productos * 0.05
+    if total_product > 10:
+        quant_discount = total_withrevivedisc * 0.05
     else:
-        quant_discount = total_productos * 0
+        quant_discount = total_withrevivedisc * 0
     
-    if total_parcial > 5000:
+    if total_partial > 5000:
         total_discount = total_withrevivedisc * 0.1
     else:
         total_discount = total_withrevivedisc * 0
@@ -97,7 +89,7 @@ try:
     discount = total_discount + quant_discount + revive_discount
     
     os.system("cls")
-    print(f"Total bruto: {total_parcial}\nTotal de descuentos: {discount}\nTotal a pagar: {final_total}\nCantidad de productos comprados: {total_productos}\n")
+    print(f"Total bruto: {total_partial}\nTotal de descuentos: {discount}\nTotal a pagar: {final_total}\nCantidad de productos comprados: {total_product}\n")
     
 except:
     print("malaso")
